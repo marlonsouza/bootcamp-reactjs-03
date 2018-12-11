@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   loading: false,
   data: [],
+  error: null,
 };
 
 export default function favorites(state = INITIAL_STATE, action) {
@@ -14,7 +15,10 @@ export default function favorites(state = INITIAL_STATE, action) {
       return {
         data: [...state.data, action.payload.data],
         loading: false,
+        error: null,
       };
+    case 'ADD_FAVORITE_FAILURE':
+      return { ...state, loading: false, error: action.payload.error };
     default:
       return state;
   }
